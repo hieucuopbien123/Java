@@ -1,0 +1,42 @@
+- System.out.println("");
+- System.exit(0);
+
+- Double.parseDouble("");
+- Math.sqrt(<double>);
+
+- Character.isUpperCase(<char>);
+- Character.isLowerCase(<char>);
+- Character.isDigit(<char>);
+
+- <string>.concat(<string>);
+- <string>.charAt(0);
+- <string>.indexOf(<string>);
+- <string>.lastIndexOf(<string>);
+- <string>.replace(<char>,<char>);
+- <string>.trim();
+- <string>.replace(<string>,<string>);
+- <string>.substring(5);
+- <string>.substring(5, 10);
+- <string>.compareTo(<string>);
+- <string>.length();
+
+import javax.swing.JOptionPane;
+- JOptionPane.showInputDialog(null, "");
+JOptionPane.showInputDialog(null, "", "", JOptionPane.INFORMATION_MESSAGE);
+- JOptionPane.showMessageDialog(null, "", "", JOptionPane.INFORMATION_MESSAGE);
+JOptionPane.showMessageDialog(null, "");
+
+import java.util.Scanner;
+- Scanner scanner = new Scanner(System.in);
+- scanner.nextLine();
+- scanner.nextInt();
+- scanner.nextFloat();
+- scanner.nextDouble();
+- scanner.close();
+- scanner.next();
+
+import java.text.DecimalFormat;
+- DecimalFormat decimalFormat = new DecimalFormat("#.####");
+- decimalFormat.format(10.8979876);
+
+

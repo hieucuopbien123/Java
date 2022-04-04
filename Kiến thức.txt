@@ -1,0 +1,151 @@
+UML(Unified Modeling Language)-ngôn ngữ mô hình hóa thống nhất là ngôn ngữ dành cho việc đặc tả, hình dung, xây dựng và làm tài liệu của các hệ thống phần mềm. Trong UML có 9 dạng biểu đồ mà cái PlantUML ta dùng để vẽ UML Diagram đó. Nó là 1 trong những ngôn ngữ chuẩn để xây dựng hệ thống phần mềm hướng đối tượng
+=> Dùng UML ở giai đoạn thiết kế
+
+Java là ngôn ngữ hướng đối tượng.
+Java được sử dụng xây dựng website động hay nâng cao chức năng của server. VD: Linkedin.com và ebay.com viết bằng java. Website java sẽ có hiệu năng cao. HTML, JS, CSS dùng phía client xử lý giao diện. Java thì có thể dùng để tạo web server với Java Servlet API. VD: Spring Framework là một bộ sưu tập các công cụ nổi bật để xây dựng các ứng dụng web quy mô lớn bằng java
+Java được sử dụng phát triển trò chơi. Game thường là kết hợp của nhiều ngôn ngữ và có thể dùng Java làm ngôn ngữ chính. vd trò chơi phát triển trên website. Thư viện LWJGL cực nhẹ giúp cho các trò chơi tối ưu hóa của java. VD: God of War,...
+Java có thể dùng phát triển ứng dụng Android(cạnh tranh Kotlin của Google), ứng dụng nhúng, phát triển phần mềm, ứng dụng bảo mật. VD: Eclipse, Inetelli Idea, Murex, các phần mềm internet banking,..
+
+JavaJDK là tool biên dịch java
+Eclipse, IntelliJ IDEA là IDE code java
+=> Tối thiểu có 2 thứ này để code java
+Khi có JavaJDK trong environment variable(window) thì dùng được command java
+=> Trong VSC chỉ cần cài extension làm theo hướng dẫn là mọi thứ được setup, dùng VSC làm IDE
+
+Linux: copy dùng SHIFT+CTRL+C, paste dùng SHIFT+CTRL+V
+
+javac file.java => biên dịch file java thành class
+java <tên class> => chạy file java
+=> Nên dùng Run của VSC mặc định. Dùng javac sẽ tự sinh file.class cùng thư mục file.java
+
+Trong VSC:
+Tạo dự án Java: CTRL+SHIFT+P => java: Create Java Project
+F5 or CTRL+SHIFT+D để compile và Run và Debug
+CTRL+F5 để chạy chương trình
+
+SE JDK version 8 là bản TLS stable được dùng ổn định nhất dù hiện tại có nhiều phiên bản mới ra mắt
+
+Trong java phải đặt tên class trùng tên file để biên dịch ra file cùng tên
+
+java --version
+javac --version
+
+Trong class chỉ được có 1 hàm main, mỗi class 1 file có tên trùng
+
+Cơ chế compile:
+Editor -> viết source code -> javac file.java -> sinh ra file.class -> java file -> execution
+
+Screen hiển thị, CPU xử lý, keyboard tương tác, RAM lưu trữ
+Text được bd bằng 8 bits 01, instruction hay các thứ đầu được bd bằng 8 bit 01 VD: ADD là 10000011 và đó chỉ là 8bit. Hiện tại máy tính chạy đến 64bits 1 lúc
+VD: thực hiện phép cộng trong máy tính bằng Assembly a + b
+lưu giá trị a, lưu giá trị b vào 2 địa chỉ, cộng lại content 2 địa chỉ, store kết quả
+=> Ngày xưa máy tính đời đầu họ chuyển code sang mã máy bằng mapping sheet còn bh họ dùng assember. Nó phải gọi thêm 1 function là OS calls để display output of code
+Điều này có thể tóm gọn bằng 1 dòng của ngôn ngữ bậc cao: cout << a+b; và chuyển lên công đoạn trên bằng compiler:
+print(a+b) --compiler C lang--> lưu giá....kết quả(bằng assembly) --asembler--> mã máy 01
+=> Tuy nhiên các compiler đời mới, nó chưa cả compiler và tích hợp assembler để chuyển từ ngôn ngữ bậc cao sang mã máy luôn tăng tốc độ
+Tùy hệ điều hành mà cái mã máy có thể khác nhau và assembly khác nhau. Dẫn đến 1 phần mềm muốn chạy trên nhiều hệ điều hành sẽ phải mua nhiều compiler để chuyển sang mã máy của từng hệ điều hành
+
+Trong java nó viết hàm cộng kiểu: system.out.println(1+2) ở dạng file.java nhưng nó k mang đặc trưng của hệ điều hành nào hết mà javacompiler sẽ compile sang bytecode dạng 01010 lưu trong classfile. classfile này k có hđh nào hiểu được mà chỉ có Java Virtual Machine(JVM) lưu trong RAM của system. JVM sẽ xđ hđh hiện tại và convert bytecode sang mã máy từng platform. Chữ system trong code tức là tùy vào system là gì thì cx chơi đc nên code java compile 1 phát là chạy trên mọi hđh
+
+Cơ chế compile và link trong C: VD file a1.c chứa main gọi f1(), f2(); a2.c chứa f1(); a3.c chứa f2() -> compiler sẽ compile file main tạo ra 3 file.obj là a1.obj, a2.obj, a3.obj là machine code -> Linker sẽ link 3 file này thành file.exe -> Chạy file.exe -> file.exe sẽ load vào RAM và chạy
+
+Cơ chế compile trong Java: tương tự a1.java, a2.java, a3.java qua compiler chạy main sinh ra a1.class, a2.class, a3.class -> k có giai đoạn linking mà dùng JVM -> chạy CT -> Class loader của JVM sẽ load 3 file.class vào trong RAM -> Bytecode verifier of JVM sẽ verify 3 file.class đảm bảo về security -> sau đó excecution engine của JVM sẽ convert bytecode thành native machine code và chạy nó
+=> quá trình chuyển hóa bytecode thành machine code được thực hiện lúc compiling khi execute. Đó cũng là lý do vì sao java chậm khi compile vì nó còn bận xd hđh nào để compile
+=> Đó cũng là các giải đoạn mà 1 chương trình java phải trải qua khi hoạt động
+
+Oracle là tổ chức sở hữu Java, thực ra là mua lại chủ củ là Sun Microsystem. Java đặt theo tên 1 hòn đảo ở Indo sản xuất cà phê. Họ tạo ra JVM vì muốn java chạy được nhiều nền tảng khác nhau. 
+
+JRE(Java Runtime Environment) là môi trường chạy java gồm JVM và 1 số thư viện Java giúp thực thi chương trình viết bằng java
+JDK(Java Development Kit) là bộ phát triển Java lại bao gồm JRE và Java Development Tools(các công cụ phát triển java). Do đó cần tải JDK để phát triển ứng dụng Java chẳng hạn Javac để biên dịch r nó dùng JRE để chạy luôn. Xong JDK + IDE là code được Java luôn r.
+
+Java trải qua nhiều phiên bản, có TLS như Java17, Java11, Java8
+
+Oracle khi phát hành Java7 đã phát hành 2 biến thể khác nhau của JDK.
+OpenJDK mã nguồn mở được bảo trì và phát triển bởi Oracle nhưng cho phép cộng đồng và các công ty tham gia phát triển như Red Hat, Apple Inc, IBM,... OpenJDK được cập nhập thường xuyên dựa trên phản hồi người dùng, đôi khi k ổn định. OpenJDK cũng có các đặc tả mà tổ chức muốn tạo biến thể của JDK phải tuân thủ.
+Oracle JDK được bảo trì và phát triển bởi Oracle và cũng tuân thủ các đặc tả như nói ở OpenJDK nhưng mã nguồn đóng. Nó tập trung vào sự ổn định, đáp ứng hiệu năng JVM.
+
+Java kế thừa từ C++ nhưng các tính năng khó của C++ bị lược bỏ làm nó dễ dùng hơn. Mạnh mẽ và an toàn VD chế độ tự động gom rác và đa nhiệm tốt
+
+Eclipse: có nhiều workspace và trong 1 workspace có nhiều project, trong project có nhiều file class. Để đổi workspace: file -> switch workspace.
+Ta có thể thêm project, package, class
+
+package là thứ gồm nhiều lớp. Mỗi 1 lớp dùng trong 1 lớp khác thì nó nên có keyword package ở đầu file và file cần dùng thì: import <tên file>.<tên class>;
+
+Collections khăc phục nhược điểm mảng. K cần khai báo trước số lượng phần tử. Nó là 1 tập hợp các class lưu danh sách và có khả năng tự co dãn khi danh sách thay đổi. 
+Framework là 1 tập hợp các thư viện đóng gói để hỗ trợ phát triển ứng dụng dựa trên framework đó và nó cũng cung cấp các nguyên tắc cấu trúc của ứng dụng mà ta phải tuân theo. Vd Framework Spring của JS để lập trình web với Java. Để sử dụng phải tuân theo các quy chuẩn của no
+Collection Framework là 1 tập hợp các class và interface hỗ trợ thao tác trên các đối tượng. Collection Framework cung: interface, class triển khai interface, algs. Có 2 loại: Interface Collection và Class Collection
+Interface Collection có thể cho phép lưu các phần tử giống nhau or các phần tử có thứ tự or not. Có thể bao gồm các phương thức như add, clear, compare, retaining duy trì các đối tượng. VD: List Interface, Set, SortedSet, Map và SortedMap
+Class Collection cung các lớp để triển khai Interface Collection. Có rất nhiều nhưng 6 loại chính là: LinkedList, ArrayList, HashSet, TreeSet, HashMap và TreeMap
+Algorithms: Collections Framework trong Java cung cấp các thuật toán để các Collection có thể sử dụng được.
+Để duyệt qua các phần tử của 1 đối tượng thì dùng iterator chứ k dùng các vòng lặp như for while bth. Iterator là 1 interface cung 1 số phương thực duyệt qua các phần tử của bất kỳ tập nào hay xóa các phần tử trong quá trình lặp
+Ngoài ra 2 interface Comparable và Comparator để so sánh và sắp xếp vị trí 2 đối tượng của Collection. 
+
+Mấy cái class và interface quanh đi quẩn lại chỉ có vài hàm, dường như cái nào cũng có và có 1 số hàm cái có cái k. Ta chỉ cần dùng đúng type dữ liệu ta dùng để lưu và cần cái gì thì tra gg xem có sẵn cái đó k đã:
+ListInterface là bình thường -> ArrayList, LinkedList
+SetInterface các phần tử k trùng lặp và k quan tâm thứ tự -> HashSet, TreeSet
+SortedSet là set có các phần tử được sắp xếp -> TreeSet
+Map khi muốn truy xuất, cập nhật, tìm kiếm phần tử thông qua khóa của phần tử đó -> LinkedHashMap, HashMap, TreeMap
+SortedMap là map sắp xếp theo khóa -> TreeMap
+
+LinkedList dùng khi cần xóa, thêm nhiều. ArrayList dùng khi truy xuất nhiều
+HashSet k theo thứ tự thêm vào ban đầu
+TreeSet thì buộc dùng khi cần sắp xếp
+HashMap k phụ thuộc thứ tự thêm vào ban đầu, truy xuất bằng khóa duy nhất của nó
+TreeMap được sắp xếp theo key
+
+Kích thước của HashSet là số lượng value của HashSet
+Kích thước khởi tạo của HashSet là kích thước ngay thời điểm nó được khởi tạo là 2^4=16 và tăng dần lên 2^5=32, 2^6=64 với từng ngưỡng mà số lượng phần tử nó đạt được. 
+Hệ số tải là hệ số dùng để tính đến ngưỡng nào thì capacity của HashSet sẽ tự tăng lên. default là 0.75f
+Ngưỡng: Threshold=Current capacity*Loadfactor
+VD: tạo 1 HashSet kích thước ban đầu là 16 và hệ số tải là 0.75 thì ngưỡng tiếp theo là 16*0.75=12 tức khi thêm đến mức 12 phần tử vào HashSet thì kích thước HashSet này sẽ tự tăng tiếp từ 16->32
+
+K thể tạo 1 file java trong 1 thư mục con trong src đâu mà phải trực tiếp trong src vì nó xác định path như thế, nếu đặt trong 1 thư mục con thì đó chỉ có thể là 1 package thôi
+
+Về Locale NumberFormat chú ý là ở VN ngăn cách phần nghìn với phần trăm bằng dấu chấm còn số thập phân dùng dấu phẩy còn ở Mỹ ngược lại
+
+StringBuilder quản lý chuỗi có thể đổi kích thước và nội dung
+StringTokenizer giúp tách các phần của String thành các token con. VD mỗi từ là 1 token. Nếu k chỉ định ngăn cách bằng từ nào thì sẽ mặc định là space
+
+Đối tượng thì phải có trạng thái và hành vi. Lớp cũng chỉ là tập hợp các đối tượng có cùng trạng thái và hành vi
+
+access modifier: public truy cập mọi nơi trong project, protected truy cập được từ trong lớp và các con và các lớp cùng gói, default chỉ truy cập từ lớp khai báo và các lớp cùng gói với lớp khai báo, private chỉ truy cập từ trong lớp.
+
+protected k dùng khai báo cho lớp hay interface mà chỉ được dùng cho hàm or biến của class thôi, chứ biến và hàm của interface cx k đc dùng protected
+
+Tính đóng gói: ta k nên truy cập vào thuộc tính của 1 lớp bằng cách gọi trực tiếp vì k bảo mật mà luôn làm điều đó qua 1 phương thức của lớp gọi là tinh đóng gói, ngăn ngừa vc gán giá trị k mong muốn cho thuộc tính
+
+Hình vuông là đặc biệt hóa của hcn và hcn là tổng quát hóa của hv => lớp cơ sở, lớp kế thừa
+Có 3 dạng kế thừa: kế thừa class, kế thừa abstract class, kế thừa interface
+
+Tính trừu tượng ẩn đi vc thực hiện để ẩn đi sự phức tạp. 1 lớp mà có bất  cứ 1 phương thức nào abstract thì phải khai báo class đó là abstract
+Mọi class kế thừa từ class đó buộc phải override hết hàm abstract. Lớp trừu tượng k có constructor vì éo thể khởi tạo đúng 1 instance của nó bằng new được => giống tính đa hình nhưng chỉ khác 1 tẹo
+
+overriding là lớp con định nghĩa lại hàm trong lớp cha và cú pháp gần giống hoàn toàn, có cái access_modifier là >= cha ok thôi
+overloading là 1 lớp định nghĩa 1 hàm nhưng function signature khác nhau 1 tẹo thôi cx là hàm khác r, dù cùng tên
+
+static được cấp phát bộ nhớ 1 lần ngay khi biên dịch luôn và ra đời trước đối tượng. Chỉ được hủy khi kết thúc CT. Chỉ dùng khi cần chia sẻ cái data đó cho toàn bộ hệ thống phần mềm
+
+Interface có thể kế thừa nhau nhưng k implementation. Nó chỉ định nghĩa hằng số và hàm trừu tượng
+=> Chú ý 1 lớp chỉ được kế thừa 1 lớp khác nhưng 1 interface kế thừa được từ nhiều interface khác ngăn cách nhau dấu phẩy
+1 lớp kế thừa phương thức thì phải định nghĩa toàn bộ phương thức của interface đó, nếu k định nghĩa hết thì phải là lớp abstract
+
+1 chương trình đa luồng khi có >=2 luồng(thread) chạy song song nhau. Thread là đơn vị nhỏ nhất của tiến trình(process). Các luồng được quản lý bởi máy ảo JVM. 1 luồng gồm 4 phần: định dạng, bộ đếm chương trình, 1 tập thanh ghi và ngăn xếp -> xàm lol quá
+Bản chất: cũng là thực hiện task1, sang task2 làm, làm task1, làm task2,... chuyển qua lại liên tục và độ trễ nhỏ tính bằng nano giây. Đó là độ trễ để nhảy đang làm từ luồng này nhảy sang luồng khác
+Có 2 cách tạo đa luồng trong java: kế thừa lớp Thread; implements từ 1 interface có tên là Runnable
+=> nếu tạo luồng bằng cách kế thừa lớp Thread thì k thể kế thừa thêm 1 lớp nào khác vì Java éo hỗ trợ đa kế thừa như C++. Còn nếu tạo luồng bằng cách implements Interface Runnable thì ok hơn vì có thể kế thừa 1 lớp khác
+
+Giả sử ta tạo 1 CT tải tệp tin từ internet nhưng người dùng lại dùng nó để tải 1000 tập tin thì máy tự động tạo 1000 thread sẽ crash ct. Do đó ThreadPool ra đời để tạo nhét các thread vào đó ở 1 số lượng giới hạn. Xong gán công việc cho ThreadPool để nó check thread nào đang rảnh thì thực hiện việc từ từ tránh tắc nghẽn và tăng kiểm soat luồng. Bên trong ThreadPool, các task chèn vào 1 Blocking Queue mà các Thread sẽ lấy chúng ra lần lượt mà thực thi. Nếu nhiều thread đang rảnh thì chúng k thể tranh nhau lấy từ queue được mà sẽ chờ cho Thread rảnh trước đó lấy task ra thành công rồi từ từ các thread khác vào lấy.
+Tạo thread pool bằng ThreadPoolExecutor và ArrayBlockingQueue
+
+Kể tử Java 5, ThreadPool được xây dựng sẵn trong gói java.util.concurrent vì v ta k phải tạo 1 ThreadPool mà sử dụng lớp có sẵn của gói này => Executor
+
+Java dùng 1 lớp riêng CountDownLatch để đếm bởi vì việc đếm k hề dễ vì các luồng xử lý song song. VD 2 luồng dùng chung 1 biến count. luồng 1 giảm count đi 1 liên tục, luồng 2 cũng thế nhưng nếu luồng 1 đang định giảm chưa xong thì luồng 2 tác động tới nó đổi giá trị -> kết quả sẽ k theo ý muốn khi 2 hàm tác động vào biến cùng 1 lúc
+Nếu dùng join từng thread 1 ngay sau khi start thread đó thì thành đồng bộ mẹ nó rồi nói làm gì
+Để làm được chỉ cần dùng synchronized or CountDownLatch có sẵn là xong
+
+Java có 2 loại exception là Checked Exception và Unchecked Exception: Checked Exception là Exception vào compiletime; Unchecked Exception là vào Runtime và ta cần bắt cái thứ 2
+Có thể dùng try catch, try catch finally, multicatch, nested try, try with resource, throw và throws
+
+Lamba giúp ta cung bản implement cho Functional Interface, viết function gọn hơn
+
+Method Reference cx chỉ là cách thay thế vc dùng 1 hàm như 1 biến, nhanh hơn cả lamba
