@@ -2,9 +2,12 @@ UML(Unified Modeling Language)-ngôn ngữ mô hình hóa thống nhất là ng�
 => Dùng UML ở giai đoạn thiết kế
 
 Java là ngôn ngữ hướng đối tượng.
-Java được sử dụng xây dựng website động hay nâng cao chức năng của server. VD: Linkedin.com và ebay.com viết bằng java. Website java sẽ có hiệu năng cao. HTML, JS, CSS dùng phía client xử lý giao diện. Java thì có thể dùng để tạo web server với Java Servlet API. VD: Spring Framework là một bộ sưu tập các công cụ nổi bật để xây dựng các ứng dụng web quy mô lớn bằng java
-Java được sử dụng phát triển trò chơi. Game thường là kết hợp của nhiều ngôn ngữ và có thể dùng Java làm ngôn ngữ chính. vd trò chơi phát triển trên website. Thư viện LWJGL cực nhẹ giúp cho các trò chơi tối ưu hóa của java. VD: God of War,...
-Java có thể dùng phát triển ứng dụng Android(cạnh tranh Kotlin của Google), ứng dụng nhúng, phát triển phần mềm, ứng dụng bảo mật. VD: Eclipse, Inetelli Idea, Murex, các phần mềm internet banking,..
+Java được sử dụng xây dựng website động hay nâng cao chức năng của server. VD: Google, Facebook, Linkedin.com và ebay.com viết bằng java. Cụ thể họ dùng java làm backend cho hệ thống của họ. Website java sẽ có hiệu năng cao. HTML, JS, CSS dùng phía client xử lý giao diện. Các framework nổi tiếng của Java dùng cho web là Spring, JSP/Serviet, Struts. Java thì có thể dùng để tạo web server với Java Servlet API. VD: Spring Framework là một bộ sưu tập các công cụ nổi bật để xây dựng các ứng dụng web quy mô lớn bằng java
+Java được sử dụng phát triển trò chơi. Game thường là kết hợp của nhiều ngôn ngữ và có thể dùng Java làm ngôn ngữ chính. vd trò chơi phát triển trên website. Thư viện LWJGL cực nhẹ giúp cho các trò chơi tối ưu hóa của java. VD: God of War,... Thư viện jmonkeyengine là thưu viện game 3D nổi tiếng của Java
+Java có thể dùng phát triển ứng dụng Android(cạnh tranh Kotlin của Google). Nó tương thích với VS và Kotlin.
+Dùng trong BigDaga với các công cụ: Hadoop, Apache Spark, Apache Storm,..
+Java phat triển GUI ứng dụng desktop. Nó có các thư viện như AWT, Swing, JavaFX giúp làm điều đó
+Ngoài ra còn giúp xd ứng dụng nhúng, phát triển phần mềm, ứng dụng bảo mật. VD: Eclipse, Inetelli Idea, Murex, các phần mềm internet banking,..
 
 JavaJDK là tool biên dịch java
 Eclipse, IntelliJ IDEA là IDE code java
@@ -149,3 +152,40 @@ Có thể dùng try catch, try catch finally, multicatch, nested try, try with r
 Lamba giúp ta cung bản implement cho Functional Interface, viết function gọn hơn
 
 Method Reference cx chỉ là cách thay thế vc dùng 1 hàm như 1 biến, nhanh hơn cả lamba
+
+Bản chất String trong Java là immutable. VD: String s = "Hello"; s.concat(" Java"); System.out.println(s); => thì vẫn in ra Hello bởi vì immutable nên s k đổi giá trị được
+Nếu dùng: String s = "Hello"; s = s.concat(" Java"); System.out.println(s); tức là ta gán s sang 1 chuỗi mới "Hello Java" nhưng bản chất chuỗi "Hello" vẫn tồn tại trong pool constant string và k bị đổi
+NN là vì hiệu năng, team JVM thấy các chuỗi trong các ứng dụng hầu như là lặp lại nên họ thiết kế string constants pool chỉ tạo ra 1 instance duy nhất là 1 hằng string; String là kiểu dữ liệu dùng nhiều nhất trong các ứng dụng. Khi dùng driver hay tạo 1 kết nối đến URL nào đó ta thg phải truyền đối tượng dạng String. Nếu nó k immutable có thể gây ra vấn đề bảo mật Pandora Box
+
+String pool là 1 vùng nhớ đặc biệt nằm trong vùng heap lưu các chuỗi immutable. 2 cách tạo string:
+String str = "abc"; => JVM check "abc" tồn tại trong pool trong heap chưa -> đã tồn tại thì JVM tham chiếu biến str đến vùng nhớ chuỗi này trong pool, nếu chưa thì JVM tạo ra object chứa chuỗi này đưa vào pool và cho str tham chiếu đến vùng nhớ vừa tạo
+String str = new String("abc"); => JVM chả check gì hết mà tạo 1 object trong vùng nhớ heap có giá trị "abc" => Do String là immutable nên vc dùng new với String là k cần thiết
+VD: String s1 = "Cat"; String s2 = "Cat"; => trên Java Heap có 1 cái String Pool và bên trong nó có 1 constant string "Cat" và s1, s2 cùng trỏ đến vùng nhớ constant string đó
+String s3 = new String("Cat"); => 1 constant string được tạo ra trong java heap nhưng k tạo trong String Constant Pool nx
+=> s1==s2 nhưng s3!=s1
+=> Chú ý String Pool nằm trong Java Heap và Java Heap còn chứa nh thứ khác nx. Tức là 2 cách tạo string cùng lưu trong heap nhưng ở 2 nơi khác nhau
+
+Trong java có 2 class: java.sql.Date kế thừa java.util.Date
+- java.sql.Date chỉ có ngày/tháng/năm, java.util.Date có ngày/tháng/năm và thời gian giờ/phút/giây
+
+Marker Interface pattern là 1 design pattern của khoa học máy tính dùng để cung cấp thông tin object khi run-time. Trong java thì Marker interface được thể hiện qua vc dùng 1 interface trống k có phương thức nào. Trong java có 1 vd là interface Serializable vì cái interface này k có bất kỳ method nào. Khi 1 object implements Serializable thì JVM sẽ hiểu object này có thể chuyển thành byte để chuyển vào đâu đó như ghi ra file or gửi lên server và 1 chương trình khác sẽ chuyển lại từ byte ra chính object mà ta đã gửi.
+=> yếu điểm của Maker Interface là 1 class dùng Marker Interface sẽ phải implements 1 interface và k có cách nào hủy được điều đó
+
+main trong java là public static void vì: 
+public để truy cập mọi nơi trong ứng dụng
+static để gọi trực tiếp k cần tạo instance
+void vì hàm main k return gì cho JVM. Nếu main trả ra cái gì khác 0 chứng tỏ có lỗi or người dùng chủ động shutdown bằng System.exit(int)
+
+Trong java, class Object là class cha của tất cả các class trong java. VD nó có 2 phương thức hashCode và equals khiến mọi Object đều dùng được. hashCode trả ra số nguyên địa chỉ vùng nhớ màm Object đang được lưu
+equals để kiểm tra xem bằng nhau k. Mặc định là nó kiểm tra tham chiếu cùng vùng nhớ k. Nhưng trong String thì nó implement lại là ss giá trị còn == là so sánh tham chiếu
+
+
+Dùng java với MySQL thông qua Java JDBC Driver để thao tác Java với CSDL:
+Cần tải thêm NetBeans IDE về máy tính để làm môi trường code. Tải thư viện MySQL Connector/J để thao tác với MySQL trong Java.
+Netbeans là IDE mạnh của Java dùng cho ứng dụng web, di động, desktop hết. Nó cũng giống Eclipses hỗ trợ nhiều ngôn ngữ khác nx. Để cài NetBeans cũng phải có sẵn JDK. 
+=> bỏ. Chỉ cần biết có thể thao tác với Database SQL bằng Java thông qua driver, cũng như trong Qt ta thao tác với Microsoft SQL được ấy
+
+Design Pattern trong Java là những kiểu thiết kế tối ưu khi triển khia ứng dụng phầm mềm. Design pattern là giải pháp cho các vấn đề thường xảy ra, nó kp đoạn code đã hoàn thành mà là 1 khuôn mẫu giúp giải quyết vấn đề tái sử dụng code trong lập trình.
+
+Singleton Pattern đảm bảo 1 lớp chỉ có 1 instance duy nhất, hạn chế việc khởi tạo 1 class. Cung cấp 1 điểm truy cập toàn cục cho lớp. Chính singleton pattern cũng được sử dụng trong các pattern khác như Abstract Factory, Builder,.. hay cacsc lớp java như java.lang.Runtime,..
+Triển khai: dùng private constructor của class để đảm bảo class khác k thể truy cập vào constructor và tạo instance mới; tạo 1 biến private static để đảm bảo duy nhất dùng trong class đó thôi; Để các class khác truy cập vào global instance này thì cần 1 public static method trả về giá trị của instance. Bản thân nó có rất nhiều cách triển khai

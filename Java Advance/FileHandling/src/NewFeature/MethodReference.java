@@ -45,6 +45,7 @@ public class MethodReference {
         String[] stringArray = { "Steve", "Rick", "Aditya", "Negan", "Lucy", "Sansa", "Jon"};
         //lib Arrays cung các util thao tác với array
         Arrays.sort(stringArray, String::compareToIgnoreCase);//ss thứ tự từ điển bỏ qua lower/uppercase
+        //sort List dùng Collections, còn sort array dùng Arrays, sort ArrayList dùng sort của chính nó có
         for(String str: stringArray){
             System.out.print(str + "\t");
         }
